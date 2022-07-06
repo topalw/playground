@@ -267,7 +267,7 @@ Answer
 ``` r
 nl <- length(hw.mp.EAS) # length of of p-values
 plot(-log10(1:nl/nl), -log10(sort(hw.mp.EAS)), cex=0.6, pch=16);abline(c(0,1), xlab='theoretical p-val distr', 
-                                                                       ylab='emp p-val dist exact-mp', main='QQplot for EAS')
+                                                                       ylab='emp p-val dist exact-mp', main='QQplot for EAS' )
 ```
 
 ![](pract2_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
