@@ -22,23 +22,19 @@ output:
   github_document: default
 ---
 
-```{r setup, include=FALSE}
-#knitr::opts_chunk$set(echo = ECHO,eval = EVAL, fig.path = "./pract1_sols_files/figure-gfm/")
-```
-
 # Importing data into R  
 
 ```{r needed libs, results='hide',message=FALSE}
+### TIPS ###
+# We first load all the libraries we will need for this practical. 
+# Make sure you have those installed 
+# If not then please visit https://www2.unil.ch/popgen/teaching/SISG22/
 library(hierfstat)
 library(gaston)
 library(SNPRelate)
 library(JGTeach)
 library(wesanderson)
 library(knitr)
-### TIPS ###
-# We first load all the libraries we will need for this practical. 
-# Make sure you have those installed 
-# If not then please visit https://www2.unil.ch/popgen/teaching/SISG22/
 ```  
 
 1. download the [first 20 megabytes of chromosome 22](https://www2.unil.ch/popgen/teaching/SISGData/chr22_Mb0_20.recode.vcf.gz) (this is a subset of chromosome 22, data from all chromosomes can be downloaded from [the 1000 genome download site](http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/). From a unix command prompt, enter `wget url`; from a browser, just download the file.
@@ -286,12 +282,12 @@ kable(round(tab,digits=5))
 #read pan.txt into a bed object
 pan <- ms2bed("https://www2.unil.ch/popgen/teaching/SISGData/pan.txt")
 #plot snps hz against p
-plot(pan@p, pan@snps$hz, col="orange", pch=20, cex=0.3, ylab='SNP heterozygosity',
-     xlab='allelic frequency')
+plot(pan@p, pan@snps$hz, col="black", pch=16, cex=0.4, ylab='SNP heterozygosity (Het)',
+     xlab='allelic frequency (p)')
 
 #add expected prop of heterozygotes given the frequency 
 p <- 0:1000/1000 
-lines(x=p,y=2*p*(1-p),col="darkblue")
+lines(x=p,y=2*p*(1-p),col="orange")
 ```
 
 </details>
@@ -305,9 +301,9 @@ What would the figure look like if there was only 50 individuals in the sample?
 
 ```{r}
 pan50 <- pan[1:50,] # get only 50 individuals
-plot(x=pan50@p,y=pan50@snps$hz,col="orange",pch=20,cex=0.8, ylab='SNP heterozygosity',
+plot(x=pan50@p, y=pan50@snps$hz,col="black",pch=20,cex=0.8, ylab='SNP heterozygosity',
      xlab='allelic frequency')
-lines(p,2*p*(1-p),col="blue")
+lines(p,2*p*(1-p),col="orange")
 ```
 
 </details>  
