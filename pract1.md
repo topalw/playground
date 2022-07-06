@@ -2,7 +2,7 @@ Practical 1: Loading genetic data into R, simulating genetic data,
 allelic frequencies
 ================
 Jerome Goudet and Bruce Weir
-2022-07-04
+2022-07-06
 
 
 
@@ -63,10 +63,10 @@ library(knitr)
     ) and its function `read.VCF` using the following commands:
 
 ``` r
-ch22 <- read.VCF("../chr22_Mb0_20.recode.vcf.gz")
+ch22 <- read.VCF("chr22_Mb0_20.recode.vcf.gz")
 ### TIPS ### 
 # Make sure to specify the correct path to the file! 
-# if your file is in the same folder as your script then ditch the '../' 
+# if your file is in the parent directory of your script then add a '../' 
 ```
 
 How many individuals in the data set? How many SNPs? Explore the
@@ -78,7 +78,7 @@ components
 
 <details>
 <summary>
-**Answer**
+Answer
 </summary>
 
 ``` r
@@ -108,7 +108,7 @@ str(ch22)
     ### TIPS ###
     # You can run plink with R using the system() command.
     # example if your plink.exe and the vcf.gz is in your working directory (getwd() to see where you are - setwd() to change it)
-    # you can run > system("plink2.exe --vcf ../chr22_Mb0_20.recode.vcf.gz --make-bed --snps-only just-acgt --max-alleles 2 --out ../chr22.1kg")
+    # you can run > system("plink2.exe --vcf chr22_Mb0_20.recode.vcf.gz --make-bed --snps-only just-acgt --max-alleles 2 --out chr22.1kg")
     # from your R console to execute the software
 
 You can explore [PLINK](https://www.cog-genomics.org/plink/2.0/) website
@@ -189,11 +189,10 @@ boxplot(ch22@ped$hz ~ with(samp.desc,factor(super_pop:pop)), las=2 ,ylab='Hetero
 
 5.  Simulating genetic data: using `hierfstat` and its function
     `sim.genot` (read its help page!), generate a data set with the
-    genotypes of 50 sampled individuals at
-    ![100](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;100 "100")
-    biallelic loci from each of 4 populations, where the populations are
-    made of 1000 individuals and exchange migrants at a rate of 0.001.
-    Leave mutation rate and f to their default. From the `R` prompt:
+    genotypes of 50 sampled individuals at 100 biallelic loci from each
+    of 4 populations, where the populations are made of 1000 individuals
+    and exchange migrants at a rate of 0.001. Leave mutation rate and f
+    to their default. From the `R` prompt:
 
 <details>
 <summary>
@@ -289,7 +288,7 @@ Answer
 </summary>
 
 ``` r
-pan <- ms2bed("../pan.txt")
+pan <- ms2bed("pan.txt")
 hist(pan@p,breaks=101, xlab='allelic frequency', main='Histogram of allelic frequencies in a panmictic population')
 ```
 
@@ -313,7 +312,7 @@ Answer
 </summary>
 
 ``` r
-ch22 <- read.VCF("../chr22_Mb0_20.recode.vcf.gz") # reload chr22 vcf
+ch22 <- read.VCF("chr22_Mb0_20.recode.vcf.gz") # reload chr22 vcf
 ```
 
     ## ped stats and snps stats have been set. 
@@ -354,22 +353,10 @@ par(mfrow=c(1,1)) # back to single plots
     function `JGTeach::comp.ci.binom`, compare the accuracy of the Wald,
     binomial, and bootstrap confidence intervals:
 
--   For a frequency of
-    ![0.5](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;0.5 "0.5")
-    in a sample of
-    ![1000](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;1000 "1000")
-    genes.
+-   For a frequency of 0.5 in a sample of 1’000 genes.
 -   For a frequency of 0.1 in a sample of 10 genes.
--   For a frequency of
-    ![0.1](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;0.1 "0.1")
-    in a sample of
-    ![1'000](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;1%27000 "1'000")
-    genes.  
--   For a frequency of
-    ![0.001](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;0.001 "0.001")
-    in a sample of
-    ![1'000](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;1%27000 "1'000")
-    genes.
+-   For a frequency of 0.1 in a sample of 1’000 genes.  
+-   For a frequency of 0.001 in a sample of 1’000 genes.
 
 Focusing on the Wald and exact confidence intervals, infer a rule for
 when it is not appropriate to use the Wald confidence interval.
