@@ -184,7 +184,8 @@ hw.mp.EAS <- HWExactStats(cbind(ch22[EAS,]@snps$N0, ch22[EAS,]@snps$N1, ch22[EAS
 
 ```{r}
 nl <- length(hw.mp.EAS) # length of of p-values
-plot(-log10(1:nl/nl), -log10(sort(hw.mp.EAS)), cex=0.6, pch=16);abline(c(0,1))
+plot(-log10(1:nl/nl), -log10(sort(hw.mp.EAS)), cex=0.6, pch=16);abline(c(0,1), xlab='theoretical p-val distr', 
+                                                                       ylab='emp p-val dist exact-mp', main='QQplot for EAS')
 # index outliers 
 outliers <- which(-log10(hw.mp.EAS) > 6)
 plot(ch22[EAS,]@p, ch22[EAS,]@snps$hz, col="black", pch=16, cex=0.6, xlab='p', ylab='Het')
