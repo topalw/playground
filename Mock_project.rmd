@@ -17,3 +17,7 @@ with(cars,plot(speed~dist,pch=16))
 # add line 
 with(cars, abline(lm(speed~dist),lwd=2))
 ```
+
+```{r}
+print(lm(cars$speed ~ cars$dist))
+```
